@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.niit.colloborativebackend.model.Friend;
 
 @EnableTransactionManagement
-@Repository(value="friendDAO")
+@Repository(value="friendDao")
 
 public class FriendDaoImpl implements FriendDao {
 	
@@ -34,7 +34,6 @@ public FriendDaoImpl() {
 
 
 	@Transactional
-
 	public boolean save(Friend friend) {
 		// TODO Auto-generated method stub
 		try {
@@ -102,12 +101,12 @@ public FriendDaoImpl() {
 	
 
 	
-		@Transactional
+@Transactional
 	public List<Friend> getNewFriendRequests(String friendId) {
 		// TODO Auto-generated method stub
 
 		
-		String hql = "from Friend where userId = '" + friendId + "' and status = 'N'";
+		String hql = "from Friend where friendId = '" + friendId + "' and status = 'N'";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		

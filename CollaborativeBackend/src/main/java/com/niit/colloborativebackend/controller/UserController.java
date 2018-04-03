@@ -95,6 +95,7 @@ import com.niit.colloborativebackend.model.UserDetails;
 			}
 			else {
 				session.setAttribute("loggedInUser", userdetails);
+				System.out.println("logged session set");
 				session.setAttribute("loggedInUserID", userdetails.getUserId());
 			}
 			return new ResponseEntity<UserDetails>(userdetails, HttpStatus.OK);

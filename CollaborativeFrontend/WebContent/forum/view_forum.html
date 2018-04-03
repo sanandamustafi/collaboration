@@ -10,9 +10,9 @@
  <div>
   <div>
    <h3><i class="fa fa-cube">{{selectedForum.forumName}}</i></h3>
-       <p>{{selectedForum.forumContent}}</p>
+       <p>{{selectedForum.forumDescription}}</p>
        <p>
-         <strong>Best regards</strong><br>
+         <strong>Best Regards</strong><br>
          <small>{{selectedForum.userId}}</small>
        </p>
      </div><!-- /forum-area -->
@@ -23,6 +23,18 @@
 <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;Like&nbsp;&nbsp;<span>{{selectedForum.forumUserCount}}</span></i>
 	</button>
 </div>
+<div>
+<form name="myForm"> 
+		<textarea type="text" class="form-control" required placeholder="Write your comment here..." ng-model="ctrl.forumComment.forumComment" ></textarea>
+		<a href=""><button  type="button" ng-click="ctrl.createForumComment(ctrl.forumComment, selectedForum.forumId);"  class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-comments-o"></i> Comment</button> </a>
+		</form> 
+</div>
+<div ng-repeat="forumComment in selectedForumComments"> <br>
+ <h4>{{forumComment.forumCommentDate|date}}</h4>
+        <h4>{{forumComment.userName}}</h4><br>
+        <p>{{forumComment.forumComment}}</p>
+        
+</div>
         </div>
           </div><!-- /col-md-8 -->
           
@@ -31,3 +43,16 @@
 
         </div>
       </div>
+
+      
+
+      
+     
+      
+      
+    
+   
+    
+   
+    
+ 

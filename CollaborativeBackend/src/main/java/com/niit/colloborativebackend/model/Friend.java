@@ -1,12 +1,16 @@
 package com.niit.colloborativebackend.model;
 
 import java.io.Serializable;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
 public class Friend extends BaseDomain implements Serializable {
 	@Id
 	@SequenceGenerator(name="SEQ_FRIEND", sequenceName="SEQ_FRIEND_AUTO__ID", allocationSize=1)

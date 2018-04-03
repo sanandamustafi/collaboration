@@ -65,7 +65,7 @@
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Forum<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#/create_forum"><span>Create Forum</span></a></li>
-								<li><a href="#/list_forums"><span>All Forums</span></a></li>
+								<li><a href="#/list_forum"><span>All Forums</span></a></li>
 								
 							</ul>
 						</li>
@@ -82,14 +82,24 @@
 						</li>
 
 
-				<li><a href="#/friend">My Friends</a></li>
+				<!--  <li><a href="#/friend">My Friends</a></li>-->
+				<li ng-show="currentUser==''"><a href="#/friend" class="a-hover"><span>Friend</span></a></li> 
+						
+						<li ng-hide="currentUser==''">
+							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Friend<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#/friend"><span>Friend</span></a></li>
+								
+								
+							</ul>
+						</li>
 
 				<li><a href="#/myprofile">My Profile</a></li>
 				<li ng-show="currentUser.role=='ADMIN'"><a href="#/users"><span>All Users</span></a></li>
 				 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			<li   ng-show="currentUser!=''" class="navbar-brand">  Welcome {{currentUser.name}} </li>
+			<li   ng-show="currentUser!=''" class="navbar-brand">  Welcome {{currentUser.userName}} </li>
 				<li ng-show="currentUser.role!='ADMIN' && currentUser.role!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
 				
 				
@@ -172,6 +182,9 @@
 	<script src="userdetail/UserService.js"></script>
 	<!-- Job related js files -->
 	<script src="job/JobController.js"></script>
-	<script src="job/JobService.js"></script>	
+	<script src="job/JobService.js"></script>
+	<!-- Friend related js files -->
+	<script src="friend/FriendController.js"></script>
+	<script src="friend/FriendService.js"></script>	
 </body>
 </html>

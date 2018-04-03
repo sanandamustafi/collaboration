@@ -20,6 +20,7 @@ import com.niit.colloborativebackend.model.Blog;
 import com.niit.colloborativebackend.model.BlogComment;
 import com.niit.colloborativebackend.model.Forum;
 import com.niit.colloborativebackend.model.ForumComment;
+import com.niit.colloborativebackend.model.Friend;
 import com.niit.colloborativebackend.model.Job;
 import com.niit.colloborativebackend.model.JobApplication;
 import com.niit.colloborativebackend.model.UserDetails;
@@ -64,6 +65,7 @@ import com.niit.colloborativebackend.model.UserDetails;
 				sessionBuilder.addAnnotatedClass(ForumComment.class);	
 				sessionBuilder.addAnnotatedClass(Job.class);	
 				sessionBuilder.addAnnotatedClass(JobApplication.class);
+				sessionBuilder.addAnnotatedClass(Friend.class);
 				
 				/*sessionBuilder.addAnnotatedClass(Chat.class);	
 				sessionBuilder.addAnnotatedClass(Event.class);	
