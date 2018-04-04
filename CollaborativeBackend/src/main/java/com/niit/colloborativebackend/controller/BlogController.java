@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -79,6 +80,19 @@ public class BlogController {
 		return new ResponseEntity<List<Blog>>(blog,HttpStatus.OK);	
 		
 	}
+	@PutMapping(value = "/approveBlog/{id}")				
+	public ResponseEntity<Blog> approveBlog( @PathVariable("id") int id,@RequestBody Blog blog) {
+		System.out.println("AAA");
+		
+		Blog blog1=blogDao.getBlogByBlogId(id);
+		//blog1.setStatus(blog.getStatus());
+		  blog1.setBlogStatus("A");	// A = Approve, R = Reject, N = New
+		blogDao.updateBlog(blog1);
+		
+		
+		return new ResponseEntity<Blog> (blog1, HttpStatus.OK);
+	}
+
 }
 
 

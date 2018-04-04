@@ -45,21 +45,23 @@
 
 
 				 <!--<li><a href="#/blog">Blog</a></li> -->
-				  <li ng-show="currentUser==''"><a href="#/blog" class="a-hover"><span>Blog</span></a></li> 
+				  <li ng-show="currentUser==''"><a href="#/list_blog" class="a-hover"><span>Blog</span></a></li> 
 						
 						<li ng-hide="currentUser==''">
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Blog<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 							
-							<li ng-show="currentUser.role=='ADMIN'"><a href="#/list_newblogs"><span>Approve Blogs</span></a></li>
+							<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/list_newblogs"><span>Approve Blogs</span></a></li>
 								<li><a href="#/create_blog"><span>Add new Blog</span></a></li>
-								<li><a href="#/list_blogs"><span>Blog List</span></a></li>
+								<li><a href="#/list_blog"><span>Blog List</span></a></li>
+								
+								
 								
 							</ul>
 						</li>
 						
 				<!-- <li><a href="#/forum">Forum</a></li> -->
-				 <li ng-show="currentUser==''"><a href="#/forum" class="a-hover"><span>Forum</span></a></li> 
+				 <li ng-show="currentUser==''"><a href="#/list_forum" class="a-hover"><span>Forum</span></a></li> 
 						
 						<li ng-hide="currentUser==''">
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Forum<span class="caret"></span></a>
@@ -95,12 +97,12 @@
 						</li>
 
 				<li><a href="#/myprofile">My Profile</a></li>
-				<li ng-show="currentUser.role=='ADMIN'"><a href="#/users"><span>All Users</span></a></li>
+				<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/users"><span>All Users</span></a></li>
 				 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li   ng-show="currentUser!=''" class="navbar-brand">  Welcome {{currentUser.userName}} </li>
-				<li ng-show="currentUser.role!='ADMIN' && currentUser.role!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
+				<li ng-show="currentUser.userRole!='ADMIN' && currentUser.role!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
 				
 				
 				
@@ -110,8 +112,8 @@
                 <li ng-hide="currentUser==''" >  
 				
 								
-								  <li ng-show="currentUser.role!='ADMIN' && currentUser.role!='ROLE_USER'"><a href="#/login" ng-show="!$curen.isUserLoggedIn">sign in</a></li> 
-								 <li ng-show="currentUser.role=='ADMIN' || currentUser.role=='ROLE_USER'"><a ng-click="ctrl.logout()">Logout
+								  <li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='ROLE_USER'"><a href="#/login" ng-show="!$curen.isUserLoggedIn">sign in</a></li> 
+								 <li ng-show="currentUser.userRole=='ADMIN' || currentUser.userRole=='ROLE_USER'"><a ng-click="ctrl.logout()">Logout
 									 </a></li>
 				                  
 				                   </ul>

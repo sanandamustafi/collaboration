@@ -34,6 +34,7 @@ public class ForumCommentController {
 	@PostMapping(value = "/forumComment/{id}")
 	public ResponseEntity<ForumComment> createForumComment(@RequestBody ForumComment forumComment) {
 		if(forumCommentDao.get(forumComment.getForumId()) == null) {
+			forumComment.setForumCommentDate(new java.util.Date(System.currentTimeMillis()));
 			forumCommentDao.save(forumComment);
 			return new ResponseEntity<ForumComment>(forumComment, HttpStatus.OK);
 		}
