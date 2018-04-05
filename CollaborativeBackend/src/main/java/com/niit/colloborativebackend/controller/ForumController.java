@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,5 +81,17 @@ public class ForumController {
 		return new ResponseEntity<List<Forum>>(forum,HttpStatus.OK);	
 		
 	}	
+	@PutMapping(value = "/approveForum/{id}")				
+	public ResponseEntity<Forum> approveForum( @PathVariable("id") int id,@RequestBody Forum forum) {
+		System.out.println("AAA");
+		
+		Forum forum1=forumDao.getForumByForumId(id);
+		//blog1.setStatus(blog.getStatus());
+		  forum1.setForumStatus("A");	// A = Approve, R = Reject, N = New
+		forumDao.updateForum(forum1);
+		
+		
+		return new ResponseEntity<Forum> (forum1, HttpStatus.OK);
+	}
 
 }

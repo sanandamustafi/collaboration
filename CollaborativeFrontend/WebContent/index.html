@@ -67,19 +67,21 @@
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Forum<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#/create_forum"><span>Create Forum</span></a></li>
-								<li><a href="#/list_forum"><span>All Forums</span></a></li>
-								
+								<li><a href="#/list_forums"><span>All Forums</span></a></li>
+								<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/list_newforums"><span>Approve Forums</span></a></li>
 							</ul>
 						</li>
 				<!-- <li><a href="#/job">Job</a></li> -->
-				 <li ng-show="currentUser==''"><a href="#/search_job" class="a-hover"><span>Job</span></a></li> 
+				 <li ng-show="currentUser==''"><a href="#/list_jobs" class="a-hover"><span>Job</span></a></li> 
 						
 						<li ng-hide="currentUser==''">
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Job<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li ng-show="currentUser.role=='ADMIN'"><a href="#/job"><span>Post Job</span></a></li>
-								<li><a href="#/create_jobs"><span>Search Job</span></a></li>
-								<li><a href="#/view_applied_jobs"><span>Job Applied</span></a></li>
+								<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/job"><span>Post Job</span></a></li>
+								
+								<li><a href="#/list_jobs"><span>All Jobs</span></a></li>
+								
+								<li><a href="#/list_vacantjobs"><span>Vacant Jobs</span></a></li>
 							</ul>
 						</li>
 
@@ -102,7 +104,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li   ng-show="currentUser!=''" class="navbar-brand">  Welcome {{currentUser.userName}} </li>
-				<li ng-show="currentUser.userRole!='ADMIN' && currentUser.role!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
+				<li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
 				
 				
 				
@@ -188,5 +190,6 @@
 	<!-- Friend related js files -->
 	<script src="friend/FriendController.js"></script>
 	<script src="friend/FriendService.js"></script>	
+	
 </body>
 </html>

@@ -1,0 +1,50 @@
+<div id="create-user">
+	<div class="container">
+		<div>
+			<div>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+<div ng-show='ctrl.userdetail.errorMessage!=""'>
+<div>Error :
+		{{ctrl.userdetail.errorMessage}}</div>
+</div>
+<fieldset>
+	<legend>Create User</legend>
+	<div>
+<form ng-submit="ctrl.submit()" name="myForm" >
+
+<div>
+<input type="text" name="id" required pattern=".{5,50}"
+	placeholder="Id of the User" ng-model="ctrl.userdetail.userId">
+</div>
+<div>
+<input type="text" name="name" required pattern=".{5,50}"
+	placeholder="Name of the User" ng-model="ctrl.userdetail.userName">
+</div>
+<div>
+<input type="text" name="password" required pattern=".{5,50}"
+	placeholder="Password of the User" ng-model="ctrl.userdetail.userPassword">
+</div>
+<div>
+<input type="text" name="role" required pattern=".{5,50}"
+	placeholder="Role of the User" ng-model="ctrl.userdetail.userRole">
+</div>
+<div>
+<input type="text" name="date of birth" required pattern=".{5,50}"
+	placeholder="date of birth of the User" ng-model="ctrl.userdetail.userDOB">
+</div>
+
+<div class="one">
+<textarea type="text" name="address" required pattern=".{5,25}"
+placeholder="Address ..." ng-model="ctrl.userdetail.userAddress" ></textarea>
+</div>
+<div>
+<input type="submit" class="btn btn-info floatright" value="submit">
+</div>
+</form>
+</div>
+</fieldset>
+</div>
+			</div>
+		</div>
+	</div>
+</div>

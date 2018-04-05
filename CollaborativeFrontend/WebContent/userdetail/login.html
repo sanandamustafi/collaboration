@@ -1,0 +1,42 @@
+<div id="login">
+	<div class="container">
+		<div>
+			<div>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+<div ng-show='ctrl.userdetail.errorMessage!=""'>
+<div>Error:
+{{ctrl.userdetail.errorMessage}}</div>
+</div>
+<fieldset>
+	<legend> Login Page</legend>
+	<div>
+<form ng-submit="ctrl.authenticateUser(ctrl.userdetail)" name="myForm" >
+
+
+<table>
+
+ <tr>
+ <td>UserId:</td>
+<td><input type="userId" name="userId" required pattern=".{3,25}"
+	placeholder="Id of the User" ng-model="ctrl.userdetail.userId"  required></td>
+</tr>
+
+<tr>
+<td>Password:</td>
+<td><input type="password" name="password" required pattern=".{5,}"
+	placeholder="Password of the User"ng-model="ctrl.userdetail.userPassword" required></td>
+</tr>
+
+<tr>
+<td><input type="submit" class="btn btn-info floatright " value="submit"></td>
+</tr>
+
+</table>
+</form>
+</div>
+</fieldset>
+</div>
+			</div>
+		</div>
+	</div>
+</div>

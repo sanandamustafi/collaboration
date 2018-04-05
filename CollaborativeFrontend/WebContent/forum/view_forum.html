@@ -10,24 +10,25 @@
  <div>
   <div>
    <h3><i class="fa fa-cube">{{selectedForum.forumName}}</i></h3>
-       <p>{{selectedForum.forumDescription}}</p>
-       <p>
-         <strong>Best Regards</strong><br>
-         <small>{{selectedForum.userId}}</small>
-       </p>
+   <p>{{selectedForum.forumDescription}}</p>
+   <p> Decreased Production Costs: A quick return on investment (ROI) outweighs the initial setup costs. With robots, 
+   throughput speeds increase, which directly impacts production. Shorter Cycle Times: A lean manufacturing line is 
+   crucial for increasing efficiency. An automated robot has the ability to work at a constant speed without pausing
+   for breaks,sleep, or vacations, and ultimately has the potential to produce more in a shorter time than a human worker.
+  Improved Quality and on in the manufacturing industry is the process of integrating industrial machinery
+  to automatically perform a variety of applications such as welding, material handling, packing, palletizing,
+  dispensing, cutting, etc.</p>
+
+ <p align="right"><strong>Best Regards</strong><br>
+ <small>{{selectedForum.userId}}</small></p>
+       
      </div><!-- /forum-area -->
-<div class="col-md-8 like-forum" ng-hide="currentUser==''">
-<div>
-	<button type="button" class="btn-more forum-like-style"
-	ng-click="ctrl.likeForum(selectedForum, selectedForum.forumId)">
-<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;Like&nbsp;&nbsp;<span>{{selectedForum.forumUserCount}}</span></i>
-	</button>
-</div>
+
 <div>
 <form name="myForm"> 
-		<textarea type="text" class="form-control" required placeholder="Write your comment here..." ng-model="ctrl.forumComment.forumComment" ></textarea>
-		<a href=""><button  type="button" ng-click="ctrl.createForumComment(ctrl.forumComment, selectedForum.forumId);"  class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-comments-o"></i> Comment</button> </a>
-		</form> 
+<textarea type="text" class="form-control" required placeholder="Write your comment here..." ng-model="ctrl.forumComment.forumComment" ></textarea><br>
+<a href=""><button type="button" ng-click="ctrl.createForumComment(ctrl.forumComment,selectedForum.forumId);" ><i class="fa fa-comments-o"></i> Comment</button> </a>
+</form> 
 </div>
 <div ng-repeat="forumComment in selectedForumComments"> <br>
  <h4>{{forumComment.forumCommentDate|date}}</h4>
@@ -35,8 +36,8 @@
         <p>{{forumComment.forumComment}}</p>
         
 </div>
-        </div>
-          </div><!-- /col-md-8 -->
+    
+ </div><!-- /col-md-8 -->
           
           
           </div><!-- /col-md-4 -->

@@ -1,0 +1,34 @@
+<div>
+   <div class="container">
+   <div class="row">
+   <div class="col-md-8">
+   <h1><a style="color: #efefef; text-decoration: none;">{{selectedUser.userName}}</a></h1>
+<h4> {{selectedUser.userId}} &nbsp;&nbsp;   On : {{selectedUser.userDOB | date}}</h4>
+ </div>
+ </div>
+<div class="row">
+ <div>
+  <div>
+   <h3><i class="fa fa-cube">{{selectedUser.userName}}</i></h3>
+       <p>{{selectedUser.userAddress}}</p>
+       <p>
+         <strong>Best regards</strong><br>
+         <small>{{selectedUser.userId}}</small>
+       </p>
+     </div><!-- /user-area -->
+<div class="col-md-8 like-forum" ng-hide="currentUser==''">
+<div>
+	<button type="button" class="btn-more forum-like-style"
+	ng-click="ctrl.onlineUser(selectedUser, selectedUser.userId)">
+<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;Online&nbsp;&nbsp;<span>{{selectedUser. userIsOnline}}</span></i>
+	</button>
+</div>
+        </div>
+          </div><!-- /col-md-8 -->
+          
+          
+          </div><!-- /col-md-4 -->
+
+        </div>
+      </div>
+    </div>

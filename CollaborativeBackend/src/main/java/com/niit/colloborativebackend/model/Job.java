@@ -16,46 +16,55 @@ public class Job extends BaseDomain implements Serializable  {
 	@Id
 	@SequenceGenerator(name="SEQ_JOB", sequenceName="SEQ_JOB_AUTO_ID", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_JOB")
+	
 	private int jobId;
-	private String jobProfile;
-	private String jobQualification;
-	private String jobstatus;
-	private Date jobpostdate;
-	private String jobDescription;
-	public int getJobId() {
+	private String companyName;
+	private String location;
+	private String description;
+	private Date jobDate;
+	private String status;
+	private int noOfApplicants;
+	public int getjobId() {
 		return jobId;
 	}
-	public void setJobId(int jobId) {
+	public void setId(int jobId) {
 		this.jobId = jobId;
 	}
-	public String getJobProfile() {
-		return jobProfile;
+	public String getCompanyName() {
+		return companyName;
 	}
-	public void setJobProfile(String jobProfile) {
-		this.jobProfile = jobProfile;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
-	public String getJobQualification() {
-		return jobQualification;
+	public String getLocation() {
+		return location;
 	}
-	public void setJobQualification(String jobQualification) {
-		this.jobQualification = jobQualification;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	public String getJobstatus() {
-		return jobstatus;
+	public String getDescription() {
+		return description;
 	}
-	public void setJobstatus(String jobstatus) {
-		this.jobstatus = jobstatus;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public Date getJobpostdate() {
-		return jobpostdate;
+	public Date getJobDate() {
+		return jobDate;
 	}
-	public void setJobpostDate(Date jobpostdate) {
-		this.jobpostdate = jobpostdate;
+	public void setJobDate(Date jobDate) {
+		this.jobDate = jobDate;
 	}
-	public String getJobDescription() {
-		return jobDescription;
+	public String getStatus() {
+		return status;
 	}
-	public void setJobDescription(String jobDescription) {
-		this.jobDescription = jobDescription;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+	public int getNoOfApplicants() {
+		return noOfApplicants;
+	}
+	public void setNoOfApplicants(int noOfApplicants) {
+		this.noOfApplicants = noOfApplicants;
+	}
+
 }
