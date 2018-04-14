@@ -37,7 +37,7 @@ import com.niit.colloborativebackend.model.UserDetails;
 			return new ResponseEntity<List<UserDetails>>(userdetails,HttpStatus.OK);
 		}
 		
-		//	http://localhost:8081/BinderServer/user/
+		
 		@RequestMapping(value = "/userdetail/", method = RequestMethod.POST)
 		public ResponseEntity<UserDetails> createUser(@RequestBody UserDetails userdetails) {
 			if(userdetailsDao.getUserByUserId(userdetails.getUserId()) == null) {
@@ -48,8 +48,8 @@ import com.niit.colloborativebackend.model.UserDetails;
 			return new ResponseEntity<UserDetails>(userdetails,HttpStatus.OK);
 		}
 		
-		//	http://localhost:8081/BinderServer/user/sovan001
-		@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+		
+		@RequestMapping(value = "/userdetail/{id}", method = RequestMethod.PUT)
 		public ResponseEntity<UserDetails> updateUser(@PathVariable("id") String id, @RequestBody UserDetails userdetails) {
 			if(userdetailsDao.getUserByUserId(id) == null) {
 				userdetails = new UserDetails();
@@ -60,7 +60,7 @@ import com.niit.colloborativebackend.model.UserDetails;
 			return new ResponseEntity<UserDetails>(userdetails, HttpStatus.OK);
 		}
 		
-		//	http://localhost:8081/BinderServer/user/sovan001
+		
 		@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<UserDetails> deleteUser(@PathVariable("id") String id) {
 			UserDetails userdetails = userdetailsDao.getUserByUserId(id);
@@ -73,8 +73,8 @@ import com.niit.colloborativebackend.model.UserDetails;
 			return new ResponseEntity<UserDetails>(userdetails,HttpStatus.OK);		
 		}
 		
-		//	http://localhost:8081/BinderServer/user/sovan001
-		@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+		
+		@RequestMapping(value = "/userdetail/{id}", method = RequestMethod.GET)
 		public ResponseEntity<UserDetails> getUser(@PathVariable("id") String id) {
 			UserDetails userdetails = userdetailsDao.getUserByUserId(id);
 			if(userdetails == null) {
@@ -85,7 +85,7 @@ import com.niit.colloborativebackend.model.UserDetails;
 			return new ResponseEntity<UserDetails>(userdetails, HttpStatus.OK);
 		}
 		
-		//	http://localhost:8081/BinderServer/user/authenticate/
+		
 		@RequestMapping(value = "/user/authenticate/", method = RequestMethod.POST)
 		public ResponseEntity<UserDetails> authenticateUser(@RequestBody UserDetails userdetails, HttpSession session) {
 			userdetails = userdetailsDao.authenticateUser(userdetails.getUserId(), userdetails.getUserPassword());
@@ -99,6 +99,12 @@ import com.niit.colloborativebackend.model.UserDetails;
 				session.setAttribute("loggedInUserID", userdetails.getUserId());
 			}
 			return new ResponseEntity<UserDetails>(userdetails, HttpStatus.OK);
+		}
+		
+		@RequestMapping(value="/user/logout",method=RequestMethod.GET)
+		public ResponseEntity<UserDetails>logout(HttpSession session){
+			session.invalidate();
+			return new ResponseEntity<UserDetails>(new UserDetails(), HttpStatus.OK);
 		}
 	}
 

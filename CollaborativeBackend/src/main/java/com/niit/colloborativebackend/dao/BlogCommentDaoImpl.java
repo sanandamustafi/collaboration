@@ -84,7 +84,7 @@ try {
 	@Transactional
 	public BlogComment get(int id) {
 		// TODO Auto-generated method stub
-		String hql = "from ForumComment where id = " + "'" + id + "'";
+		String hql = "from BlogComment where id = " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
 		@SuppressWarnings("unchecked")
@@ -100,10 +100,10 @@ try {
 	}
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<BlogComment> list() {
+	public List<BlogComment> list(int id) {
 		// TODO Auto-generated method stub
 
-		String hql = "from ForumComment";
+		String hql = "from BlogComment where blogId="+id;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
 		return query.list();

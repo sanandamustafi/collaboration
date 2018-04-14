@@ -2,7 +2,7 @@
    <div class="container">
    <div class="row">
    <div class="col-md-8">
-   <h1><a style="color: #efefef; text-decoration: none;">{{selectedBlog.title}}</a></h1>
+   <h1><a style="color: #efefef; text-decoration: none;">{{selectedBlog.blogTitle}}</a></h1>
 <h4>Written By : {{selectedBlog.blogId}} &nbsp;&nbsp;   On : {{selectedBlog.blogDate | date}}</h4>
  </div>
  </div>
@@ -11,12 +11,28 @@
   <div>
    <h3><i class="fa fa-cube">{{selectedBlog.blogTitle}}</i></h3>
        <p>{{selectedBlog.blogContent}}</p>
-       <p>
-         <strong>Best regards</strong><br>
+       <p>Definition of OOP Concepts in Java. OOP concepts in 
+       Java are the main ideas behind Java's Object Oriented 
+       Programming. They are an abstraction, encapsulation, 
+       inheritance, and polymorphism. Grasping them is key
+        to understanding how Java works.</p>
+         <p align="right"><strong>Best regards</strong><br>
          <small>{{selectedBlog.userId}}</small>
        </p>
      </div><!-- /blog-area -->
-
+<div>
+<form name="myForm"> 
+<textarea type="text" class="blog-control" required placeholder="Write your comment here..." ng-model="ctrl.blogComment.blogComment" ></textarea><br>
+<a href=""><button type="button" ng-click="ctrl.createBlogComment(ctrl.blogComment,selectedBlog.blogId);" ><i class="fa fa-comments-o"></i> Comment</button> </a>
+</form> 
+</div>
+<div ng-repeat="blogComment in selectedBlogComments"> <br>
+ <h4>{{blogComment.blogCommentDate|date}}</h4>
+        <h4>{{blogComment.userName}}</h4><br>
+        <p>{{blogComment.blogComment}}</p>
+        
+</div>
+    
           </div><!-- /col-md-8 -->
           
           

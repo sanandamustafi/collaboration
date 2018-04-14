@@ -1,0 +1,63 @@
+<!-- The Grid -->
+  <div class="w3-row">
+ 
+    
+ <!-- Middle Column -->
+    <div class="w3-col m9" >
+    
+     <div class="w3-row-padding"  ng-show="currentUser.userRole=='USER' || currentUser.userRole=='ADMIN'">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+            	<form ng-submit="addMessage()" name="messageForm">
+									
+              <h4 class="w3-opacity">Welcome to global Chat...</h6>
+             <textarea class="form-control" placeholder="Write your message here..." rows="3"
+										ng-model="message" style="height: inherit;" autofocus >
+									</textarea>	
+              <br>
+              
+										<a class="max-char">max chars : 140  <span class="count" ng-bind="max - message.length"
+											ng-class="{danger:message.length >max}"> </span></a>
+			<button type="submit" class="w3-button w3-theme" value="Send" ng-disabled="message.length > max || message.length === 0">
+			<i class="fa fa fa-paper-plane"></i>Send </button>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+       
+       
+       <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offeset-2" >
+       <div class="w3-col m9">
+      <div  ng-repeat="message in messages"  ><br>
+       
+        <!-- <span class="w3-right w3-opacity" ng-class="{self: message.self}">{{message.time | time:'HH:mm'}}</span> -->
+        <h4 ng-class="{self: message.self}">{{message.userId}}</h4><br> 
+        <hr class="w3-clear">
+        
+        <p ng-class="{self: message.self}">{{message.message}}</p>
+        
+        
+         
+      </div> 
+   
+   
+      
+    
+          <!-- End Middle Column -->
+    </div>
+
+    
+
+    
+  <!-- End Grid -->
+  </div>
+  
+
+
+
+
+

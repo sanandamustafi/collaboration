@@ -126,5 +126,35 @@ app.factory('BlogService', ['$http', '$q', '$rootScope',
 								});
 				},
 				
+				fetchAllBlogComments : function(id)
+				{
+					console.log("-->BlogService : calling 'fetchAllBlogComments' method for id : " + id);
+					return $http.get(BASE_URL +'/blogComments/'+id).then
+					(function(response) 
+							{
+									$rootScope.selectedBlogComments = response.data;
+									return response.data;
+							}, 
+								function(errResponse) {
+									console.error('Error while fetching BlogComments');
+									return $q.reject(errResponse);
+								});
+				},
+				createBlogComment : function(blogComment,id)
+				{
+					console.log("-->BlogService : calling 'createBlogComment' method.");
+					return $http.post(BASE_URL + '/blogComment/'+id, blogComment).then
+					(function(response)
+							{
+									return response.data;
+							}, 
+							function(errResponse) 
+							{
+									console.error('Error while creating blogComment');
+									return $q.reject(errResponse);
+							}
+					);
+				}
+				
 			};
 		}]);

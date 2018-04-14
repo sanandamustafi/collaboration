@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.colloborativebackend.dao.BlogCommentDao;
 import com.niit.colloborativebackend.model.BlogComment;
-import com.niit.colloborativebackend.model.ForumComment;
+
 
 
 @RestController
 public class BlogCommentController {
 	@Autowired
 	BlogCommentDao blogCommentDao;
-	@GetMapping(value = "/blogComments")
-	public ResponseEntity<List<BlogComment>> listForumComments() {
-		List<BlogComment> blogComment = blogCommentDao.list();
+	@GetMapping(value = "/blogComments/{id}")
+	public ResponseEntity<List<BlogComment>> listForumComments(@PathVariable("id")int id) {
+		List<BlogComment> blogComment = blogCommentDao.list(id);
 		if(blogComment.isEmpty()) {
 			return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
 		}
@@ -32,9 +32,10 @@ public class BlogCommentController {
 	}
 
 
-@PostMapping(value = "/blogComment/")
+@PostMapping(value = "/blogComment/{id}")
 public ResponseEntity<BlogComment> createBlogComment(@RequestBody BlogComment blogComment) {
 	if(blogCommentDao.get(blogComment.getBlogId()) == null) {
+		blogComment.setBlogCommentDate(new java.util.Date(System.currentTimeMillis()));
 		blogCommentDao.save(blogComment);
 		return new ResponseEntity<BlogComment>(blogComment, HttpStatus.OK);
 	}
@@ -63,7 +64,7 @@ public ResponseEntity<BlogComment> deleteForumComment(@PathVariable("id") int id
 	blogCommentDao.delete(blogComment);
 	return new ResponseEntity<BlogComment>(HttpStatus.OK);		
 }
-@GetMapping(value = "/blogComment/{id}")
+/*@GetMapping(value = "/blogComment/{id}")
 public ResponseEntity<BlogComment> getForumComment(@PathVariable("id") int id) {
 	BlogComment blogComment = blogCommentDao.get(id);
 	if(blogComment == null) {
@@ -72,6 +73,6 @@ public ResponseEntity<BlogComment> getForumComment(@PathVariable("id") int id) {
 		return new ResponseEntity<BlogComment>(blogComment, HttpStatus.NOT_FOUND);
 	}
 	return new ResponseEntity<BlogComment>(blogComment, HttpStatus.OK);
-}
+}*/
 
 }

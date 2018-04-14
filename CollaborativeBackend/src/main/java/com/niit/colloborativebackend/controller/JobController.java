@@ -98,9 +98,9 @@ public class JobController {
 		return new ResponseEntity<Job>(HttpStatus.OK);		
 	}
 	@GetMapping(value = "/getJob/{id}")
-	public ResponseEntity<Job> getJob(@PathVariable("id") int id) {
-		
-		Job job = jobDao.get(id);
+	public ResponseEntity<Job> getJob(@PathVariable("id") String id) {
+		int jid=Integer.parseInt(id);
+		Job job = jobDao.get(jid);
 		if(job == null) {
 			job = new Job();
 			job.setErrormessage("No job exist with id : " + id);
