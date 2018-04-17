@@ -23,7 +23,7 @@ public class BlogCommentController {
 	@Autowired
 	BlogCommentDao blogCommentDao;
 	@GetMapping(value = "/blogComments/{id}")
-	public ResponseEntity<List<BlogComment>> listForumComments(@PathVariable("id")int id) {
+	public ResponseEntity<List<BlogComment>> listBlogComments(@PathVariable("id")int id) {
 		List<BlogComment> blogComment = blogCommentDao.list(id);
 		if(blogComment.isEmpty()) {
 			return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
