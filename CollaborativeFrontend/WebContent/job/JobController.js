@@ -78,7 +78,7 @@ app.controller('JobController', ['JobService', '$scope', '$location', '$rootScop
 						.getJob(id)
 						.then(function(d) {
 							self.job = d;
-							$location.path('/view_job/');
+							$location.path('/view_job');
 						},
 						function(errResponse) {
 							console.error('Error while fetching job details...')

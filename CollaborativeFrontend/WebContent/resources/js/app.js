@@ -84,8 +84,14 @@ app.config(function($routeProvider) {		//We can use config() block to inject onl
 })
 .when('/register',{
 	templateUrl : 'userdetail/register.html',
+	controller : 'UserController as ctrl'
+})
+.when('/edit-profile',{
+	templateUrl : 'userdetail/edit-profile.html',
+	controller : 'UserController as ctrl'
 	
 })
+
 	/**
 	 * friend related mapping
 	 */	
@@ -104,18 +110,21 @@ app.config(function($routeProvider) {		//We can use config() block to inject onl
 	controller : 'JobController as ctrl'
 		
 	})
-	.when('/list_vacantjobs',{
-		
-	templateUrl : 'job/list_vacantjobs.html',
-	controller : 'JobController as ctrl'
-		
-	})
+	
 	.when('/view_job',{
 		
 		templateUrl : 'job/view_job.html',
 		controller : 'JobController as ctrl'
 	})
-		
+	/**
+	 * Chat related mapping
+	 * 
+	 * 
+	 */	
+		.when('/chat',{
+		templateUrl : 'chat/chat.html',
+		controller : 'ChatController as ctrl'	
+		})
 	/**
 	 * If anything goes wrong then this mapping will handle the request...
 	 */

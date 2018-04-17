@@ -49,7 +49,7 @@ app.factory('UserService', ['$http', '$q', '$rootScope',
 				updateUser : function(userdetail, id) {
 					console.log("--> UserService : calling 'updateUser' method with id : "+id);
 					return $http
-								.put(BASE_URL+'/user/'+id)
+								.put(BASE_URL+'/userdetail/'+id,userdetail)
 								.then(function(response) {
 									return response.data;
 								},
@@ -109,6 +109,22 @@ app.factory('UserService', ['$http', '$q', '$rootScope',
 									return $q.reject(errResponse);
 								});
 				},	
+				logout: function() {
+					console.log("--> UserService : calling 'logout' method.");
+					return $http
+								.get(BASE_URL+'/user/logout')
+								.then(function(response) {
+									return response.data;
+								},
+								function(errResponse) {
+									console.error('Error while logging out.');
+									return $q.reject(errResponse);
+								}
+							);
+					
+					
+				},
+
 			};
 		}]);
 				

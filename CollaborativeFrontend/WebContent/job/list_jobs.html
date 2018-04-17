@@ -8,7 +8,7 @@
 				<div class="col-md-4 jobs-grid" ng-repeat="job in ctrl.jobs">
 					<div class="job-all">
 						<div class="job-all-sub frame">
-						    
+						    <h3>Id : {{job.jobId}}  </h3>
 							<h3 style="color:blue;">JOB AT : {{job.companyName}}</h3>
 							<h4 style="color:blue;">LOCATION : {{job.location}}</h4>
 							<div class="more">
@@ -38,7 +38,7 @@
 							<h3 style="color:blue;">JOB AT : {{job.companyName}}</h3>
 							<h4 style="color:blue;">LOCATION : {{job.location}}</h4>
 							<div class="more">
-								<a  ng-click="ctrl.getJob(job.id)"><input	type="button" class="btn btn-info btn-more"
+								<a  ng-click="ctrl.getJob(job.jobId)"><input	type="button" class="btn btn-info btn-more"
 									 value="JOB DETAILS"></a>
 							</div>
 						</div>

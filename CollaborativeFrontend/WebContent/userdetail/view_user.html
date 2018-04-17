@@ -10,20 +10,14 @@
  <div>
   <div>
    <h3><i class="fa fa-cube">{{selectedUser.userName}}</i></h3>
-       <p>{{selectedUser.userAddress}}</p>
-       <p>
-         <strong>Best regards</strong><br>
-         <small>{{selectedUser.userId}}</small>
-       </p>
+       <p>{{selectedUser.userGender}}</p>
+        <p>{{selectedUser.userAddress}}</p>
+	 <p>{{selectedUser.userEmail}}</p>
+	
+         
+       
      </div><!-- /user-area -->
-<div class="col-md-8 like-forum" ng-hide="currentUser==''">
-<div>
-	<button type="button" class="btn-more forum-like-style"
-	ng-click="ctrl.onlineUser(selectedUser, selectedUser.userId)">
-<i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;Online&nbsp;&nbsp;<span>{{selectedUser. userIsOnline}}</span></i>
-	</button>
-</div>
-        </div>
+
           </div><!-- /col-md-8 -->
           
           

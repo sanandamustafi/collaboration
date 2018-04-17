@@ -39,7 +39,7 @@ body {
 										
 											<div class="form-group">
 
-												<input ng-model="ctrl.user.name"
+												<input ng-model="ctrl.userdetail.userName"
 													class="form-control input-sm" type="text" required
 													pattern=".{3,50}" placeholder="First Name">
 											</div>
@@ -48,14 +48,14 @@ body {
 
 								<div class="form-group">
 
-									<input input ng-model="ctrl.user.email"
+									<input input ng-model="ctrl.userdetail.userEmail"
 										class="form-control input-sm" type="text" required
 										pattern=".{3,25}" placeholder="Enter email address">
 								</div>
 
 								<div class="form-group">
 
-									<input ng-model="ctrl.user.id" class="form-control input-sm"
+									<input ng-model="ctrl.userdetail.userId" class="form-control input-sm"
 										type="text" required pattern=".{3,25}"
 										placeholder="Enter login id">
 
@@ -64,7 +64,7 @@ body {
 								<div class="form-group">
 
 
-									<input input ng-model="ctrl.user.password"
+									<input input ng-model="ctrl.userdetail.userPassword"
 										class="form-control input-sm" type="password" required
 										pattern=".{5,10}" placeholder="Enter password">
 								</div>
@@ -72,7 +72,7 @@ body {
 
 
 						<input type="submit" class="btn btn-info kp-button floatright"
-										value="register">
+										value="register" ng-click="ctrl.register()">
 									<input type="button" class="btn btn-info kp-button floatright" 
 										value="reset form" ng-click="ctrl.reset()">
 							
@@ -91,44 +91,3 @@ body {
 
 
 
-<!-- <div id="post_user">
-	<div class="container">
-		<div class="form-area">
-			<div class="row y-row">
-				<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-					<fieldset>
-						<legend>New User</legend>
-						<div class="form-inner">
-							<form ng-submit="ctrl.register()" class="form-horizontal" name="myForm">
-								<div class="one">
-									<input ng-model="ctrl.user.name" type="text" required pattern=".{3,25}"
-										placeholder="Name">
-								</div>
-								<div class="one">
-									<input ng-model="ctrl.user.email" type="text" required pattern=".{3,25}"
-										placeholder="Enter email address">
-								</div>
-								<div class="one">
-									<input ng-model="ctrl.user.id" type="text" required pattern=".{3,25}"
-										placeholder="Enter login id" />
-								</div>
-								<div class="one">
-									<input ng-model="ctrl.user.password" type="password" required pattern=".{5,10}"
-										placeholder="Enter password" />
-								</div>
-								
-								<div>
-									<input type="submit" class="btn btn-info kp-button floatright"
-										value="register">
-									<input type="button" class="btn btn-info kp-button floatright" 
-										value="reset form" ng-click="ctrl.reset()">
-								</div>
-							</form>
-						</div>
-					</fieldset>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div> -->

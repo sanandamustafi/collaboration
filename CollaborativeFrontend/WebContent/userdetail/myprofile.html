@@ -5,11 +5,13 @@
 		<div class="col-md-8 col-md-offset-2 profile-base">
 			<fieldset>
 				<legend>
-					<span>My Profile</span>
-					<!-- <a href="#/edit-profile" class="btn btn-info btn-edit">
-						<span>Edit Profile</span> 
-					</a> -->
+					<span>Profile</span>&nbsp;&nbsp;
+					
+	<input type="button" class="btn btn-info btn-edit"ng-click="ctrl.editUser()" 
+      value="Edit Profile"> 
+					 
 				</legend>
+
 				<div>
 					<form class="col-md-8 form-profile">
 						<div class="one-profile">
@@ -47,12 +49,30 @@
 						
 						<div class="one-profile">
 							<div class="col-md-4">
-								<a class="floatleft">Role in this project</a>
+								<a class="floatleft">Role</a>
 							</div>
 							<div class="col-md-8">
 								<label class="floatleft"> : {{currentUser.userRole}}</label>
 							</div>
 						</div>
+						
+						<div class="one-profile">
+							<div class="col-md-4">
+								<a class="floatleft">Date of Birth</a>
+							</div>
+							<div class="col-md-8">
+								<label class="floatleft"> : {{currentUser.userDOB}}</label>
+							</div>
+						</div>
+						<div class="one-profile">
+							<div class="col-md-4">
+								<a class="floatleft">Address</a>
+							</div>
+							<div class="col-md-8">
+								<label class="floatleft"> : {{currentUser.userAddress}}</label>
+							</div>
+						</div>
+						
 					</form>
 					<div class="col-md-4">
 						<img

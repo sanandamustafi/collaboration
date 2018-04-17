@@ -7,7 +7,9 @@ app.controller('UserController', [
 		'UserService',
 		'$location',
 		'$rootScope',
-		function($scope, UserService, $location, $rootScope) {
+		'$route',
+		'$window',
+		function($scope, UserService, $location, $rootScope,$route,$window) {
 			console.log("UserController...")
 			var self = this;
 			self.userdetail = {
@@ -15,7 +17,7 @@ app.controller('UserController', [
 				errorCode : '',
 				errorMessage : '',
 				userId : '',
-				userpassword : '',
+				userPassword : '',
 				userName : '',
 				userRole : '',
 				userGender : '',
@@ -27,6 +29,7 @@ app.controller('UserController', [
 				userIsOnline:''
 				
 			}
+			
 			self.userdetails = [];
 
 			self.getSelectedUser = function(id) {
@@ -62,13 +65,34 @@ app.controller('UserController', [
 						});
 			};
 			self.updateUser = function(userdetail, id) {
-				console.log("-->UserController : calling updateUser method.");
-				UserService.updateUser(userdetail, id).then(
-						self.fetchAllUsers,
-						function(errResponse) {
-							console.error('Error while updating userdetail...')
-						});
+				console.log("--> UserController : calling updateUser method.User id is :"+id);
+				console.log("-->UserController", self.userdetail);
+				UserService.updateUser(userdetail, id).then(function(d) {
+					self.userdetails = d;
+					alert('User Updated Successfully...')
+					$location.path('/login');
+					}, function(errResponse) {
+						console.error('--> UserController : Error while updating User...');
+					});
 			};
+
+			self.logout = function() {
+				console.log("--> UserController : calling logout method.");
+				
+				$rootScope.currentUser = {};
+				
+			//	$cookieStore.remove('currentUser');
+				UserService.logout();
+				
+				console.log("-->UserController : User Logged out.");
+				$route.reload();
+				$window.location.reload(true);
+				$location.path('/');
+			}
+
+			
+			
+
 			
 			self.deleteUser = function(id) {
 				console.log("-->UserController : calling deleteUser method.");
@@ -114,6 +138,27 @@ app.controller('UserController', [
 				};
 				
 				self.fetchAllUsers();
+				self.register = function() {
+					{
+						console.log("--> UserController : calling register() method.", self.userdetail);
+						self.createUser(self.userdetail);
+						console.log('Saving new user...');
+					}
+					$location.path('/login');
+					self.reset();
+				};
+				
+				self.editUser = function() {
+					{
+					console.log("-->UserController : calling editUser method : getting user with id : " ,self.userdetail);
+					self.updateUser(self.userdetail);
+					console.log('Updating user...');
+				}
+								$location.path('/edit-profile');
+							
+							
+				};
+				
 			/*****************************************************************************/
 				self.submit = function() {
 					{
@@ -148,7 +193,7 @@ app.controller('UserController', [
 							errorCode : '',
 							errorMessage : '',
 							userId : '',
-							userpassword : '',
+							userPassword : '',
 							userName : '',
 							userRole : '',
 							userGender : '',

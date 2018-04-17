@@ -61,7 +61,7 @@
 						</li>
 						
 				<!-- <li><a href="#/forum">Forum</a></li> -->
-				 <li ng-show="currentUser==''"><a href="#/list_forum" class="a-hover"><span>Forum</span></a></li> 
+				 <li ng-show="currentUser==''"><a href="#/list_forums" class="a-hover"><span>Forum</span></a></li> 
 						
 						<li ng-hide="currentUser==''">
 							<a class="dropdown-toggle a-hover" data-toggle="dropdown">Forum<span class="caret"></span></a>
@@ -81,7 +81,7 @@
 								
 								<li><a href="#/list_jobs"><span>All Jobs</span></a></li>
 								
-								<li><a href="#/list_vacantjobs"><span>Vacant Jobs</span></a></li>
+								
 							</ul>
 						</li>
 
@@ -99,12 +99,13 @@
 						</li>
 
 				<li><a href="#/myprofile">My Profile</a></li>
-				<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/users"><span>All Users</span></a></li>
+				<li ng-show="currentUser.userRole=='ADMIN'|| currentUser.userRole=='USER'"><a href="#/chat"><span>Chat</span></a></li>
+				<li ng-show="currentUser.userRole=='ADMIN'"><a href="#/list_users"><span>All Users</span></a></li>
 				 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<li   ng-show="currentUser!=''" class="navbar-brand">  Welcome {{currentUser.userName}} </li>
-				<li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='ROLE_USER'"><a href="#/register">Are you a new User ?</a></li>
+				<li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='USER'"><a href="#/register">Are you a new User ?</a></li>
 				
 				
 				
@@ -114,9 +115,8 @@
                 <li ng-hide="currentUser==''" >  
 				
 								
-								  <li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='ROLE_USER'"><a href="#/login" ng-show="!$curen.isUserLoggedIn">sign in</a></li> 
-								 <li ng-show="currentUser.userRole=='ADMIN' || currentUser.userRole=='ROLE_USER'"><a ng-click="ctrl.logout()">Logout
-									 </a></li>
+								  <li ng-show="currentUser.userRole!='ADMIN' && currentUser.userRole!='USER'"><a href="#/login" ng-show="!$curen.isUserLoggedIn">sign in</a></li> 
+								 <li ng-show="currentUser.userRole=='ADMIN' || currentUser.userRole=='USER'"><a class="button" ng-click="ctrl.logout()" href="">Logout </a></li>
 				                  
 				                   </ul>
 				                   
@@ -159,6 +159,7 @@
 
 
 	<script src="resources/js/sockjs-0.3.4.js"></script>
+	<script src="resources/js/sockjs.js"></script>
 	<script src="resources/js/stomp.js"></script>
 	
 	<!--  javascript for (angular + jquery + bootstrap)  -->
@@ -190,6 +191,8 @@
 	<!-- Friend related js files -->
 	<script src="friend/FriendController.js"></script>
 	<script src="friend/FriendService.js"></script>	
-	
+	<!-- Chat related js files -->
+	<script src="chat/ChatController.js"></script>
+	<script src="chat/ChatService.js"></script>	
 </body>
 </html>

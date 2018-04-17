@@ -1,0 +1,70 @@
+<div id="edit-profile">
+	<div class="container">
+		<div>
+			<div>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+<div ng-show='currentUser.errorMessage!=""'>
+<div>Error :
+		{{currentUser.errorMessage}}</div>
+</div>
+<fieldset>
+	<legend>Edit Profile</legend>
+	<div>
+<form " name="myForm" >
+
+
+
+<div>
+<tr>
+<td>Name:</td>
+<td><input type="text" name="name" required pattern=".{5,50}"
+	placeholder="Name of the User" ng-model="currentUser.userName"></td>
+	</tr>
+</div>
+
+
+
+<div>
+<tr>
+<td>Email:</td>
+<td><input type="text" name="email" required pattern=".{5,50}"
+	placeholder="Email" ng-model="currentUser.userEmail"></td>
+	</tr>
+</div>
+
+
+
+<div>
+<tr>
+<td>Gender:</td>
+<td><input type="text" name="contact" required pattern=".{5,50}"
+	placeholder=" Gender" ng-model="currentUser.userGender"></td>
+	</tr>
+</div>
+
+<div>
+<tr>
+<td>DOB:</td>
+<td><input type="text" name="date of birth" required pattern=".{5,50}"
+	placeholder="date of birth of the User" ng-model="currentUser.userDOB"></td>
+	</tr>
+</div>
+
+<div class="one">
+<tr>
+<td>Address:</td>
+<td><textarea type="text" name="address" required pattern=".{5,25}"
+placeholder="Address ..." ng-model="currentUser.userAddress" ></textarea></td>
+</tr>
+</div>
+<div>
+<input type="submit" class="btn btn-info floatright" value="submit"ng-click="ctrl.updateUser(currentUser,currentUser.userId)">
+</div>
+</form>
+</div>
+</fieldset>
+</div>
+			</div>
+		</div>
+	</div>
+</div>
