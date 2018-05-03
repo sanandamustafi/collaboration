@@ -24,6 +24,19 @@ app.factory(
 													});
 								},
 								
+								getSelectedFriend : function(id){
+									console.log("---> FriendService : calling getSelectedFriend() method with id :"+id);
+									return $http
+									.get(BASE_URL + '/user/'+id)
+									.then(function(response){
+										$rootScope.selectedUser=response.data;
+										return response.data;
+									},
+									function(errResponse) {
+										console.error("Error while Fetching Profile.");
+										return $q.reject(errResponse);
+									});
+								},
 								getNewFriendRequests : function() {
 									return $http
 											.get(BASE_URL + '/newFriendRequests')
@@ -54,22 +67,7 @@ app.factory(
 													});
 								},
 								
-								sendFriendRequest : function(friendId) {
-									return $http
-											.post(
-													BASE_URL + '/addFriend/'
-															+ friendId)
-											.then(
-													function(response) {
-														return response.data;
-													},
-													function(errResponse) {
-														console
-																.error("-->updateFriendRequest : Error while creating friend.")
-														return $q
-																.reject(errResponse);
-													});
-								},
+								
 								
 								rejectFriend : function(friend, id) {
 									console.log("--> FriendService : calling 'rejectFriend' method with id : "+id);

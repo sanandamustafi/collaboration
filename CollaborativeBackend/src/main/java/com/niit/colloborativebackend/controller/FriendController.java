@@ -28,11 +28,13 @@ public class FriendController {
 	
 	@Autowired
 	FriendDao friendDao;
+	
 	@GetMapping(value = "/myFriends")
 	public ResponseEntity<List<Friend>> myFriends(HttpSession session){
 		
-		System.out.println("**********Starting of myFriends() method");
+		System.out.println("**********Starting of myFriends() vngngb method");
 		UserDetails loggedInUser = (UserDetails) session.getAttribute("loggedInUser");
+		System.out.println("nnno"+loggedInUser);
 		List<Friend> myFriends = friendDao.getMyFriends(loggedInUser.getUserId());
 		System.out.println("**********End of myFriends() method");
 		return new ResponseEntity<List<Friend>> (myFriends, HttpStatus.OK);
@@ -47,9 +49,9 @@ public class FriendController {
 		UserDetails loggedInUser = (UserDetails) session.getAttribute("loggedInUser");
 		
 		Friend f=friendDao.get(loggedInUser.getUserId(), friendId);
-		
+		boolean b=friendDao.isFriendRequestExists(loggedInUser.getUserId(), friendId);
 		System.out.println(loggedInUser.getUserId()+"=======++++   "+friendId);
-		if(f==null)
+		if(f==null && b==false)
 		{
 		friend.setUserId(loggedInUser.getUserId());
 		
@@ -60,8 +62,9 @@ public class FriendController {
 		
 		else
 		{
-			f.setStatus("N");
-			friendDao.update(f);
+			/*f.setStatus("N");
+			friendDao.update(f);*/
+			friend.setErrormessage("already friends or request exists");
 		}
 		System.out.println("**********End of sendFriendRequest() method");
 		return new ResponseEntity<Friend> (friend, HttpStatus.OK);
@@ -101,9 +104,13 @@ public class FriendController {
 		System.out.println("**********Starting of acceptFriendRequest() method");
 		UserDetails loggedInUser = (UserDetails) session.getAttribute("loggedInUser");
 		String uid=loggedInUser.getUserId();
-		Friend friend = friendDao.get(uid, friendId);
+		System.out.println("iiiiii"+uid);
+		Friend friend = friendDao.getRequest(uid, friendId);
+		System.out.println("pppppp"+friend);
 		friend.setUserId(loggedInUser.getUserId());
-		friend.setFriendId(friendId);
+		System.out.println("bbbbbbb");
+		friend.setFriendId(uid);
+		friend.setUserId(friendId);
 		friend.setStatus("A");	// N = New, A = Accepted, R = Rejected, U = Unfriend 
 		friendDao.update(friend);
 		System.out.println("**********End of acceptFriendRequest() method");

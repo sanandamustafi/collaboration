@@ -3,6 +3,7 @@ package com.niit.colloborativebackend.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,11 +20,15 @@ public class FriendDaoImpl implements FriendDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	protected Session getSession(){
+	return sessionFactory.openSession();	
 	}
 public FriendDaoImpl() { 		
 		
@@ -37,8 +42,10 @@ public FriendDaoImpl() {
 	public boolean save(Friend friend) {
 		// TODO Auto-generated method stub
 		try {
-			
-			sessionFactory.getCurrentSession().save(friend);
+			Session s=getSession();
+			s.save(friend);
+			s.flush();
+			s.close();
 			
 			return true;
 		} catch (Exception e) {
@@ -53,9 +60,10 @@ public FriendDaoImpl() {
 	 @Transactional
 	public boolean update(Friend friend){
 		try {
-			
-			sessionFactory.getCurrentSession().update(friend);
-			
+			Session s=getSession();
+			s.update(friend);
+			s.flush();
+			s.close();
 			return true;
 		} catch (Exception e) {
 			
@@ -71,13 +79,13 @@ public FriendDaoImpl() {
 		@Transactional
 		public Friend get(String userId, String friendId) {
 			
-			String hql = "from Friend where userId = '" + userId + "' and friendId = '" + friendId + "'";
-			
-			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			String hql = "from Friend where  ( userId = '" + friendId + "' and friendId = '" + userId + "' and status='A') or " +"( userId='"+ userId +"' and friendId= '"+ friendId + "' and status = 'A')";
+			Session s=getSession();
+			Query query = s.createQuery(hql);
 			
 			@SuppressWarnings("unchecked")
 			List<Friend> list = (List<Friend>) query.list();
-			
+			s.close();
 			if(list != null && !list.isEmpty()) {
 				return list.get(0);
 			}
@@ -89,13 +97,13 @@ public FriendDaoImpl() {
 		@Transactional
 	public List<Friend> getMyFriends(String userId) {
 		// TODO Auto-generated method stub
-		String hql = "from Friend where userId = '" + userId + "' and status = 'A'";
-		
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		String hql = "from Friend where ( userId = '" + userId + "' and status = 'A') or (friendId='"+ userId + "' and status ='A')";
+		Session s=getSession();
+		Query query = s.createQuery(hql);
 		
 		@SuppressWarnings("unchecked")
 		List<Friend> list = (List<Friend>) query.list();
-		
+		s.close();
 		return list;
 	}
 	
@@ -107,12 +115,12 @@ public FriendDaoImpl() {
 
 		
 		String hql = "from Friend where friendId = '" + friendId + "' and status = 'N'";
-		
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Session s=getSession();
+		Query query = s.createQuery(hql);
 		
 		@SuppressWarnings("unchecked")
 		List<Friend> list = (List<Friend>) query.list();
-		
+		s.close();
 		return list;
 	}
 	
@@ -122,9 +130,10 @@ public FriendDaoImpl() {
 	public void setOnline(String userId) {
 		
 		String hql = "update Friend set isOnline = 'Y' where userId = '" + userId + "'";
-		
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Session s=getSession();
+		Query query = s.createQuery(hql);
 		query.executeUpdate();
+		s.close();
 		
 	}
 
@@ -132,11 +141,37 @@ public FriendDaoImpl() {
 		@Transactional
 	public void setOffline(String userId) {
 		String hql = "update Friend set isOnline = 'N' where userId = '" + userId + "'";
-		
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Session s=getSession();
+		Query query = s.createQuery(hql);
 		query.executeUpdate();
 		
 	}		
-
+public Friend getRequest(String userId, String friendId )
+{
+	String hql="from Friend where userId = '"+ friendId + "' and friendId ='" + userId + "' and status ='N'";
+	Session s=getSession();
+	Query query=s.createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<Friend> list=(List<Friend>) query.list();
+	s.close();
+	if(list!=null && !list.isEmpty()){
+		return list.get(0);
+	}
+return null;
+}
+public boolean isFriendRequestExists(String userId, String friendId) {
+	// TODO Auto-generated method stub
+	String hql="from Friend where  ( userId = '" + friendId + "' and friendId = '" + userId + "' and status='N') or " +"( userId='"+ userId +"' and friendId= '"+ friendId + "' and status = 'N')";
+	Session s=getSession();
+	Query query=s.createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<Friend> list=(List<Friend>) query.list();
+	s.close();
+	if(list.size()>0)
+	
+	return true;
+	else
+		return false;
+}
 	}
 
